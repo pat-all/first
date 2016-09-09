@@ -10,6 +10,11 @@
 include_once "../models/CategoriesModel.php";
 include_once "../models/ProductsModel.php";
 
+/**
+ * add to cart function
+ *
+ * @return json information about operation [success, count of items in cart]
+ */
 function addtocartAction(){
     $itemId = isset($_GET["id"]) ? intval($_GET["id"]) : null;
     if (! $itemId) return false;
@@ -21,6 +26,29 @@ function addtocartAction(){
         $_SESSION["cart"][] = $itemId;
         $resData["cntItems"] = count($_SESSION["cart"]);
         $resData["success"] = 1;
+    } else {
+        $resData["success"] = 0;
+    }
+
+    echo json_encode($resData);
+};
+
+/**
+ * removing product from cart
+ *
+ * @param integer id - Get param of removed product
+ * @return json information about operation [success, count of items in cart]
+ */
+function removefromcartAction(){
+    $itemId = isset($_GET["id"]) ? intval($_GET["id"]) : null;
+    if (! $itemId) exit();
+
+    $resData = array();
+    $key = array_search($itemId, $_SESSION["cart"]);
+    if ($key !== false){
+        unset($_SESSION["cart"][$key]);
+        $resData["success"] = 1;
+        $resData["cntItems"] = count($_SESSION["cart"]);
     } else {
         $resData["success"] = 0;
     }

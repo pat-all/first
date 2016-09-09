@@ -17,11 +17,8 @@
     <div class="cart">
         <div class="menu-caption">Cart
             <a href="/cart/" title="go to cart">In the cart</a>
-            <span>
-                {if $cartCntItems > 0}
+            <span id="#cartCntItems">
                     {$cartCntItems}
-                    {else} Empty
-                {/if}
             </span>
         </div>
     </div>
