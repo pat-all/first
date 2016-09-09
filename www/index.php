@@ -4,7 +4,7 @@ session_start();
 if (! isset($_SESSION["cart"])){
     $_SESSION["cart"] = array();
 }
-//test commit
+
 //configurations
 include_once "../config/config.php";
 

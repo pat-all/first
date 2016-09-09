@@ -10,12 +10,13 @@
 include_once "../models/CategoriesModel.php";
 include_once "../models/ProductsModel.php";
 
-function addToCartAction($itemId){
+function addtocartAction(){
     $itemId = isset($_GET["id"]) ? intval($_GET["id"]) : null;
     if (! $itemId) return false;
 
     $resData = array();
 
+    //if id was not found it SESSION["cart"]- create it
     if(isset($_SESSION["cart"]) && array_search($itemId, $_SESSION["cart"]) === false){
         $_SESSION["cart"][] = $itemId;
         $resData["cntItems"] = count($_SESSION["cart"]);
