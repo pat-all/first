@@ -61,7 +61,7 @@ function conversionPrice(itemId) {
 
     if (newCnt < 0){
         $("#itemCnt_" + itemId).val(0);
-        newCnt = $("#itemCnt_" + itemId).val();
+        newCnt = 0;
     }
 
     itemRealPrice = newCnt * itemPrice;
