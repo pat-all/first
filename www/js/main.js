@@ -49,3 +49,14 @@ function isEmptyCart(data) {
         $("#cartCntItems").html("Empty")
     }
 }
+/**
+ * function calculates total price of product
+ * @param itemId
+ */
+function conversionPrice(itemId) {
+    var newCnt = $("#itemCnt_" + itemId).val();
+    var itemPrice = $("#itemPrice_" + itemId).attr("data-price");
+    var itemRealPrice = newCnt * itemPrice;
+
+    $("#itemRealPrice_" + itemId).html(itemRealPrice);
+}

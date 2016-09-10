@@ -52,4 +52,9 @@ aside {
   width: 150px;
   float: left; }
 
+tr td {
+  border: black 1px solid; }
+  tr td input {
+    width: 50px; }
+
 /*# sourceMappingURL=main.css.map */
