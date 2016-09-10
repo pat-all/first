@@ -16,7 +16,7 @@ define("TemplatePrefix", "../views/{$template}/");
 define("TemplatePostfix", ".tpl");
 
 //paths to templates in web
-define("TemplateWebPath", "templates/{$template}/");
+define("TemplateWebPath", "/templates/{$template}/");
 //<
 
 //>Smarty initialisation
