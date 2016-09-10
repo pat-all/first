@@ -54,9 +54,17 @@ function isEmptyCart(data) {
  * @param itemId
  */
 function conversionPrice(itemId) {
-    var newCnt = $("#itemCnt_" + itemId).val();
+
     var itemPrice = $("#itemPrice_" + itemId).attr("data-price");
-    var itemRealPrice = newCnt * itemPrice;
+    var newCnt = $("#itemCnt_" + itemId).val();
+    var itemRealPrice;
+
+    if (newCnt < 0){
+        $("#itemCnt_" + itemId).val(0);
+        newCnt = $("#itemCnt_" + itemId).val();
+    }
+
+    itemRealPrice = newCnt * itemPrice;
 
     $("#itemRealPrice_" + itemId).html(itemRealPrice);
 }
