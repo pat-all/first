@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>{$pageTittle}</title>
+        <title>{$pageTitle}</title>
         <link rel="stylesheet" href="{$templateWebPath}css/main.css" type="text/css">
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
         <script type="text/javascript" src="/js/main.js"></script>

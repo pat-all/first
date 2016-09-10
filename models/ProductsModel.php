@@ -51,3 +51,21 @@ function getProductById ($itemId){
     $rs = mysql_query($sql);
     return mysql_fetch_assoc($rs);
 }
+
+/**
+ * get all products by ids form array
+ *
+ * @param $itemsIds - array with ids
+ * @return array of products
+ */
+function getProductsFromArray($itemsIds){
+
+    $strIds = implode($itemsIds, ", ");
+    $sql = "SELECT *
+            FROM products
+            WHERE id in ({$strIds})";
+
+    $rs = mysql_query($sql);
+
+    return createSmartyRsArray($rs);
+}
