@@ -68,3 +68,45 @@ function conversionPrice(itemId) {
 
     $("#itemRealPrice_" + itemId).html(itemRealPrice);
 }
+
+function getData(obj) {
+    var hData = {};
+    $("input, textarea, select", obj).each(function () {
+        if (this.name && this.name != ""){
+            hData[this.name] = this.value;
+            console.log("hData[" + this.name + "] = " + hData[this.name]);
+        }
+    })
+    return hData;
+}
+
+
+function registerNewUser() {
+    var postData = getData("#registerBox");
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "/user/register/",
+        data: postData,
+        dataType: "json",
+        success: function (data) {
+            if (data["success"]){
+                alert(data["message"]);
+
+                //>left side block
+                $("#registerBox").hide();
+
+                // $("#userLink").attr("href", "/user/");
+                // $("#userLink").html(data["userName"]);
+                // $("#userBox").show();
+                //<
+
+                // $("#loginBox").hide();
+                // $("#btnSaveOrder").show();
+            }else {
+                alert(data["message"]);
+            }
+        }
+    })
+}
