@@ -22,6 +22,10 @@ $controllerName = isset($_GET["controller"]) ? ucfirst($_GET["controller"]) : "I
 //getting function
 $actionName = isset($_GET["action"]) ? $_GET["action"] : "index";
 
+if($_SESSION["user"]){
+    $smarty->assign("arUser", $_SESSION["user"]);
+}
+
 //initiating of count of elements in the cart for Smarty
 $smarty->assign("cartCntItems", count($_SESSION["cart"]));
 

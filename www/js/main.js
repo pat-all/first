@@ -140,3 +140,45 @@ function login(){
         }
     });
 }
+
+function showRegBox() {
+    $("#registerBoxHidden").toggle("fast");
+}
+
+/**
+ * userDataUpdate
+ *
+ */
+function updateUserData() {
+    console.log("js - updateUserData");
+    var phone   = $("#newPhone").val();
+    var address = $("#newAddress").val();
+    var pwd1    = $("#newPwd1").val();
+    var pwd2    = $("#newPwd2").val();
+    var curPwd  = $("#curtPwd").val();
+    var name    = $("#newName").val();
+
+    var postData = {phone: phone,
+                    address: address,
+                    pwd1: pwd1,
+                    pwd2: pwd2,
+                    curPwd: curPwd,
+                    name: name
+    };
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "/user/update/0/",
+        data: postData,
+        dataType: "json",
+        success: function (data) {
+            if (data["success"]){
+                $("#userLink").html(data["userName"]);
+                alert(data["message"]);
+            } else {
+                alert(data["message"]);
+            }
+        }
+    })
+}

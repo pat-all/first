@@ -62,21 +62,25 @@ function checkRegisterParams($email, $pwd1, $pwd2){
     if (! $email){
         $res["success"] = false;
         $res["message"] = "Enter email";
+        return $res;
     }
 
     if (! $pwd1){
         $res["success"] = false;
         $res["message"] = "Enter password";
+        return $res;
     }
 
     if (! $pwd2){
         $res["success"] = false;
         $res["message"] = "Confirm password";
+        return $res;
     }
 
     if ($pwd1 != $pwd2){
         $res["success"] = false;
         $res["message"] = "Passwords does not match";
+        return $res;
     }
 
     return $res;
@@ -127,6 +131,50 @@ function loginUser($email, $pwd) {
     } else {
         $rs["success"] = 0;
     }
+
+    return $rs;
+}
+
+/**
+ * Update User data
+ *
+ * @param $name - User name
+ * @param $phone - User phone
+ * @param $address - User address
+ * @param $pwd1 - User new password
+ * @param $pwd2 - Confirm new password
+ * @param $curPwd - User current password
+ * @return resource - TRUE if successful
+ */
+function updateUserData($name, $phone, $address, $pwd1, $pwd2, $curPwd){
+
+    $email   = htmlspecialchars(mysql_real_escape_string($_SESSION["user"]["email"]));
+    $name    = htmlspecialchars(mysql_real_escape_string($name));
+    $phone   = htmlspecialchars(mysql_real_escape_string($phone));
+    $address = htmlspecialchars(mysql_real_escape_string($address));
+    $pwd1    = trim($pwd1);
+    $pwd2    = trim($pwd2);
+
+    $newPwd = null;
+    if($pwd1 && ($pwd1 === $pwd2)) {
+        $newPwd = md5($pwd1);
+    }
+
+    $sql = "UPDATE users
+            SET ";
+
+    if ($newPwd){
+        $sql .= "`pwd` = '{$newPwd}',";
+    }
+
+    $sql .= " `name` = '{$name}',
+              `phone` = '{$phone}',
+              `address` = '{$address}'
+             WHERE 
+              `email` = '{$email}' AND `pwd` = '{$curPwd}'
+             LIMIT 1";
+
+    $rs = mysql_query($sql);
 
     return $rs;
 }

@@ -14,27 +14,35 @@
 
         {/foreach}
     </nav>
-    <div id="userBox" class="hideme">
-        <a href="#" id="userLink"></a><br>
-        <a href="/user/logout" <!--onclick="logOut();"-->>Exit</a>
-    </div>
-    <div id="loginBox">
-        <div class="menuCaption">Authorization</div>
-        <input type="email" id="loginEmail" name="loginEmail" placeholder="Email...">
-        <input type="password" id="loginPwd" name="loginPwd" placeholder="Password...">
-        <input type="button" value="Login" onclick="login();"></div>
-    <div id="registerBox">
-        <div class="menuCaption showHidden"><a href="#" onclick="showRegBox();">Registration</a></div>
-        <div id="registerBoxHidden">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="email...">
-                <label for="pwd1">Password</label>
-                <input type="password" id="pwd1" name="pwd1" placeholder="password...">
-                <label for="pwd2">Confirm password</label>
-                <input type="password" id="pwd2" name="pwd2" placeholder="password...">
-                <input type="button" value="Submit" onclick="registerNewUser();">
+    {if isset($arUser)}
+        <div id="userBox">
+            <a href="/user/" id="userLink">{$arUser["displayName"]}</a><br>
+            <a href="/user/logout/0/" <!--onclick="logOut();"-->>Exit</a>
         </div>
-    </div>
+    {else}
+        <div id="userBox" class="hideme">
+            <a href="#" id="userLink"></a><br>
+            <a href="/user/logout/0/" <!--onclick="logOut();"-->>Exit</a>
+        </div>
+        <div id="loginBox">
+            <div class="menuCaption">Authorization</div>
+            <input type="email" id="loginEmail" name="loginEmail" placeholder="Email...">
+            <input type="password" id="loginPwd" name="loginPwd" placeholder="Password...">
+            <input type="button" value="Login" onclick="login();"></div>
+        <div id="registerBox">
+            <div class="menuCaption showHidden"><a href="#" onclick="showRegBox(); return false;">Registration</a></div>
+            <div id="registerBoxHidden" class="hideme">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="email...">
+                    <label for="pwd1">Password</label>
+                    <input type="password" id="pwd1" name="pwd1" placeholder="password...">
+                    <label for="pwd2">Confirm password</label>
+                    <input type="password" id="pwd2" name="pwd2" placeholder="password...">
+                    <input type="button" value="Submit" onclick="registerNewUser();">
+            </div>
+        </div>
+    {/if}
+
     <div class="cart">
         <div class="menu-caption">Cart
             <a href="/cart/" title="go to cart">In the cart</a>

@@ -57,4 +57,9 @@ tr td {
   tr td input {
     width: 50px; }
 
+.user-data tr td {
+  border: none; }
+  .user-data tr td input {
+    width: 100%; }
+
 /*# sourceMappingURL=main.css.map */
