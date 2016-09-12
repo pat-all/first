@@ -14,6 +14,15 @@
 
         {/foreach}
     </nav>
+    <div id="userBox" class="hideme">
+        <a href="#" id="userLink"></a><br>
+        <a href="/user/logout" <!--onclick="logOut();"-->>Exit</a>
+    </div>
+    <div id="loginBox">
+        <div class="menuCaption">Authorization</div>
+        <input type="email" id="loginEmail" name="loginEmail" placeholder="Email...">
+        <input type="password" id="loginPwd" name="loginPwd" placeholder="Password...">
+        <input type="button" value="Login" onclick="login();"></div>
     <div id="registerBox">
         <div class="menuCaption showHidden"><a href="#" onclick="showRegBox();">Registration</a></div>
         <div id="registerBoxHidden">

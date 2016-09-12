@@ -76,7 +76,7 @@ function getData(obj) {
             hData[this.name] = this.value;
             console.log("hData[" + this.name + "] = " + hData[this.name]);
         }
-    })
+    });
     return hData;
 }
 
@@ -87,7 +87,7 @@ function registerNewUser() {
     $.ajax({
         type: "POST",
         async: false,
-        url: "/user/register/",
+        url: "/user/register/0/",
         data: postData,
         dataType: "json",
         success: function (data) {
@@ -97,9 +97,11 @@ function registerNewUser() {
                 //>left side block
                 $("#registerBox").hide();
 
-                // $("#userLink").attr("href", "/user/");
-                // $("#userLink").html(data["userName"]);
-                // $("#userBox").show();
+                $("#userLink")
+                    .attr("href", "/user/")
+                    .html(data["userName"]);
+
+                $("#userBox").show();
                 //<
 
                 // $("#loginBox").hide();
@@ -109,4 +111,32 @@ function registerNewUser() {
             }
         }
     })
+}
+
+function login(){
+    var email = $("#loginEmail").val();
+    var pwd   = $("#loginPwd").val();
+
+    var postData = "email=" + email + "&pwd=" + pwd;
+
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "/user/login/0/",
+        data: postData,
+        dataType: "json",
+        success: function (data) {
+            if(data["success"]){
+                $("#registerBox").hide();
+                $("#loginBox").hide();
+
+                $("#userLink").
+                    attr("href", "/user/").
+                    html(data["displayName"]);
+                $("#userBox").show();
+            } else {
+                alert(data["message"]);
+            }
+        }
+    });
 }

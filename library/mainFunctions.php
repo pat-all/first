@@ -54,3 +54,8 @@ function createSmartyRsArray($rs){
     }
     return $smartyRs;
 }
+
+function redirect($url = "/"){
+    header("Location: {$url}");
+    exit;
+}
