@@ -5,8 +5,9 @@
 
 //including models
 include_once "../models/CategoriesModel.php";
-//include_once "../models/OrdersModel.php";
+include_once "../models/OrdersModel.php";
 include_once "../models/UsersModel.php";
+include_once "../models/PurchaseModel.php";
 
 /**
  * AJAX users registration
@@ -122,8 +123,12 @@ function indexAction($smarty){
     //get categories for menu
     $rsCategories = getAllMainCatsWithChildren();
 
+    //get orders' list
+    $rsUserOrders = getCurUserOrders();
+
     $smarty->assign("pageTitle", "User page");
     $smarty->assign("rsCategories", $rsCategories);
+    $smarty->assign("rsUserOrders", $rsUserOrders);
 
     loadTemplate($smarty, "header");
     loadTemplate($smarty, "user");

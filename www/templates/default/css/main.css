@@ -57,9 +57,23 @@ tr td {
   tr td input {
     width: 50px; }
 
-.user-data tr td {
-  border: none; }
-  .user-data tr td input {
+.user-data {
+  border-bottom: 3px solid black; }
+  .user-data tr td {
+    border: none; }
+    .user-data tr td input {
+      width: 100%; }
+
+#frmOrder {
+  width: 280px; }
+  #frmOrder textarea {
     width: 100%; }
+  #frmOrder input {
+    width: 100%; }
+    #frmOrder input[type=button] {
+      width: 100px; }
+
+td table {
+  width: 100%; }
 
 /*# sourceMappingURL=main.css.map */

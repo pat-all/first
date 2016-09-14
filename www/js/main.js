@@ -104,8 +104,8 @@ function registerNewUser() {
                 $("#userBox").show();
                 //<
 
-                // $("#loginBox").hide();
-                // $("#btnSaveOrder").show();
+                $("#loginBox").hide();
+                $("#btnSaveOrder").show();
             }else {
                 alert(data["message"]);
             }
@@ -134,6 +134,14 @@ function login(){
                     attr("href", "/user/").
                     html(data["displayName"]);
                 $("#userBox").show();
+
+                //> fill the fields on a order page
+                $("name").val(data["name"]);
+                $("phone").val(data["phone"]);
+                $("address").val(data["address"]);
+                //<
+
+                $("#btnSaveOrder").show();
             } else {
                 alert(data["message"]);
             }
@@ -181,4 +189,30 @@ function updateUserData() {
             }
         }
     })
+}
+
+/**
+ * save order in data base
+ */
+function saveOrder() {
+    var postData = getData("#frmOrder");
+    $.ajax({
+        type: "POST",
+        async: false,
+        url: "/cart/saveorder/0/",
+        data: postData,
+        dataType: "json",
+        success: function (data) {
+            if (data["success"]){
+                alert(data["message"]);
+                $(location).attr("href", "/");
+            } else {
+                alert("message");
+            }
+        }
+    })
+}
+
+function showOrderedProducts(id) {
+    $("#purchaseForOrder_" + id).toggle("fast");
 }
